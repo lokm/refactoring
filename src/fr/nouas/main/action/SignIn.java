@@ -28,10 +28,10 @@ public class SignIn extends Action {
         String role = request.getParameter("role");
         int userId = Integer.parseInt(request.getParameter("userId"));
         */
-        	String firstname = "toto";
-            String lastname = "titi";
-            String role = "admin";
-            int userId = 1;
+        	String firstname = "yolo";
+            String lastname = "yulu";
+            String role = "superAdmin";
+            int userId = 2;
             
             boolean redirect = false;
             
@@ -41,7 +41,7 @@ public class SignIn extends Action {
         	// login //
             
             EntityManager em = JpaUtil.getEntityManager();
-                   
+            /*     
             Query q = em.createQuery("SELECT u FROM User AS u Where u.userId=:userId"); 
             q.setParameter("userId", userId);
             
@@ -59,7 +59,7 @@ public class SignIn extends Action {
                 request.getSession().setAttribute("usererror", "Pseudo ou mot de passe incorrect...");
                 e.printStackTrace();
             }
-        	
+        	*/
             // signin //
         
             User user = new User(lastname, firstname, role, userId);
