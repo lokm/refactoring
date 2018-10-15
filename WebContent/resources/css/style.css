@@ -1,0 +1,278 @@
+@font-face {
+  font-family: "DejaVu Sans";
+  src: url("../font/DejaVuSans.ttf") format("truetype");
+}
+.k-widget {
+  font-family: "DejaVu Sans";
+}
+body {
+	background-color:rgb(225, 225, 225);
+	font-family: 'Lato', sans-serif;	
+}
+option {
+	font-family: 'Lato', sans-serif;
+	color:white;
+}
+
+input, input[type="submit"], select {
+	font-family: 'Lato', sans-serif;
+	border-radius:1em;
+	border:none;
+	padding:0 0.5em;
+	height: 1.5em;
+}
+select {
+	border-top-left-radius: 12em;
+	border-bottom-left-radius: 12em;
+	border:none;
+	font-family: 'Lato', sans-serif;
+}
+textarea {
+	border-radius:1em;
+	padding:0.5em;
+	font-family: 'Lato', sans-serif;
+}
+input[type="submit"], input[type="button"] {
+	background: rgb(75, 45, 162);
+	color:white;
+	font-weight:bold;
+	font-family: 'Lato', sans-serif;
+	height:2em;
+}
+section {
+	text-align:center;
+}
+.edit input[type="text"], .edit select, textarea {
+	border: 0.1em solid black;
+	margin:0.5em 0;
+}
+.edit input[type="submit"] {
+	margin-bottom: 0.5em;
+	
+	
+}
+/*ASIDE*/
+aside form {
+	margin-bottom:1em;
+}	
+aside input, aside option, aside select {
+	font-size:1em;
+	margin-bottom:1em;
+}
+aside option, aside select, aside input[type="submit"] {
+	cursor:  pointer;	
+}
+
+section {
+	text-align:center;
+}
+#listCategorie {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content:center;
+	align-content: flex-start;
+	align-items:center;
+}
+#listCategorie article {
+	background-color:rgb(255, 255, 255);
+	width:20vw;
+	color:black;
+	margin:0.5em;
+	margin-bottom:5vh;
+	border-radius: 2.5em;
+}
+
+#listCategorie article h2 {
+	margin-top:0;
+	padding:0.2em 0;
+	color:white;
+	border-top-left-radius: 12em;
+	border-top-right-radius: 12em;
+}
+#listCategorie article a {
+	color:black;
+}
+
+
+/*NAV*/
+
+nav {
+	margin:2em 0;
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-content: center;	
+	align-items:center;
+}
+nav article {
+	margin: 0.5em;
+
+	border-radius:1em;
+	display:flex;
+	flex-flow: row wrap;
+	align-items: center;
+}
+nav article form {
+	margin_bottom:0;
+}
+nav article input, nav article select, nav article input[type="submit"] {
+	height:2em;
+}
+nav article a {
+	display:inline-block;
+
+	width:12vw;
+	padding:0.2em 1em;
+	font-size:1.5em;
+	font-weight: bold;
+	color: white;
+
+	
+
+}
+nav article a:nth-child(2), nav article a:nth-child(3) {
+	width:2vw;
+	margin:0;
+	margin-right:0.3em;
+	padding:0;
+}
+nav article a:nth-child(3) {
+	margin-right:0.5em;
+}
+
+
+
+/* #HOME */
+#home article {
+	cursor:  pointer;
+}
+#home a, article a {
+	text-decoration:none;
+}
+
+/* #LISTCATEGORIE */
+
+#listCategorie {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content:center;
+	align-content: flex-start;
+	align-items:center;
+	
+}
+#listCategorie article {
+	background-color:rgb(255, 255, 255);
+	width:20vw;
+	color:black;
+	margin:0.5em;
+	margin-bottom:5vh;
+	border-radius: 1em;
+}
+
+#listCategorie article h2 {
+	margin-top:0;
+	padding:0.2em 0;
+	color:white;
+	border-top-left-radius: 0.7em;
+	border-top-right-radius: 0.7em;
+}
+#listCategorie article h2 a {
+	float:right;
+	color:white;
+	margin-right:0.5em;
+}
+#listCategorie article a {
+	color:black;
+}
+
+/* #QUESTIONNAIRE */
+
+#questionnaire {
+	width:75vw;
+	margin:0 auto;
+	background: white;
+	font-family: 'Lato', sans-serif;
+	border-radius: 1em;
+	
+}
+
+#pageAdmin article:first-child {
+	width: 25vw;
+}
+#questionnaire article {
+	border-radius: 1em;
+	position:relative;
+
+}
+#questionnaire article h2 {
+	color:white;
+	border-top-left-radius: 0.7em;
+	border-top-right-radius: 0.7em;
+	position:relative;
+}
+#questionnaire article:first-child h2 a {
+	color:white;
+	position:absolute;
+	left:0.1em;
+}
+#questionnaire article h3 {
+	display:inline-block;
+	margin:0;
+}
+#questionnaire article a {
+	margin-left:0.5em;
+	text-decoration: none;
+	color:black;
+}
+#questionnaire article label {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content:flex-start;
+	align-content: flex-start;
+	align-items:center;
+	height:2em;
+	width:25vw;
+	margin:0 auto;
+}
+#questionnaire input {
+	padding:0.2em 0.5em;
+}
+#questionnaire hr {
+	width:75%;
+	color:rgb(225, 225, 225);
+}
+#questionnaire .reponse {
+	width:40vw;
+}
+#questionnaire #formUser {
+	top:2.2em;
+	right:1em;
+	text-align:left;
+	padding-left:1em;
+	display:flex;
+	flex-flow: row wrap;
+	align-content:center;
+	justify-content:space-around;
+	margin-bottom:1em; 
+}
+#questionnaire #formUser input, #questionnaire #formUser select {
+	margin:0.2em;
+} 
+.edit input[type="submit"] {
+	margin-bottom: 0.5em;
+
+}
+
+#questionnaire select, #questionnaire input, #questionnaire textarea {
+	border: 0.1em solid grey;
+	margin:1em 0.2em;
+	
+}
+#questionnaire input[type="submit"] {
+	border:none;
+	height:2em;
+}
+#afficheQuestionnaire {
+	border-radius: 1em;
+}
+
