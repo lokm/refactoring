@@ -21,55 +21,57 @@ public class SignIn extends Action {
        // if(request.getMethod().equals("POST")) {
             
        // Recuperation des donnees utilisateur    
-            /*
+          
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String role = request.getParameter("role");
         int userId = Integer.parseInt(request.getParameter("userId"));
-        */
-
-        	String firstname = "youcef";
-            String lastname = "Handoura";
-            String role = "superAdmin";
-            int userId = 5;
-            
-            String tokenSend = request.getParameter("token");
+       
+  
+        String tokenSend = request.getParameter("token");
             
             // creation cle decryptage
             
-            char tokenKey [] = { 
-            		tokenSend.charAt(0),
-            		tokenSend.charAt(1),
-            		tokenSend.charAt(2),
-            		tokenSend.charAt(3)
+            int tokenKey [] = { 
+            		tokenSend.charAt(0) - '0',
+            		tokenSend.charAt(1) - '0',
+            		tokenSend.charAt(2)- '0',
+            		tokenSend.charAt(3)- '0',
             };
-           
+     
+            // ouverture porte
+            
             String key = "";
             
-            for (int i=0; i>4; i++) {
+            for (int i=0; i<4; i++) {
+            
             	switch(tokenKey[i]) {
-            	      case 0 :
-            	      key += request.getParameter("nom");
+            	
+            	      case 0 :    	  
+            	      key += lastname;
             	      break;
-            	      
+          	      
             	      case 1 :
-                      key += request.getParameter("prenom");
+                      key += firstname;
                 	  break;
                 	  
             	      case 2 :
-                	  key += request.getParameter("type");
+                	  key += role;
                 	  break;
                 	  
             	      case 3 :
-                	  key += request.getParameter("id");
+                	  key += userId;
                 	  break;
                 	          
             	}
             };
+        
+//            cryptage porte 
             Md5  tF =  new Md5(key); 
-            String tokenFind = tokenSend.substring(0, 3)+tF.codeGet();
-            
-            if(tokenSend == tokenFind) {
+            String tokenFind = tokenSend.substring(0, 4)+tF.codeGet();
+         
+//			 verification cle et porte
+            if(tokenSend.equals( tokenFind)){
         
             
             boolean redirect = false;
