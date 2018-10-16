@@ -1,6 +1,6 @@
 	
 	
-	<c:if test="${user.role == 'admin' || user.role == 'superAdmin'}">
+	<c:if test="${user.role == 'Admin'}">
 				<select name="type" id="type" form="formQuestion" >
 					<option value="DEFAULT" selected disabled>Choix type
 						question</option>
@@ -34,7 +34,7 @@
 						<c:if test="${questionid != question.id}">
 		
 							<h3>${count.count}°. ${question.question}</h3>
-							<c:if test="${user.role == 'admin' || user.role == 'superAdmin'}">
+							<c:if test="${user.role == 'Admin'}">
 								<a title="Editer"
 									href='<c:url value="editQuestion?question=${question.id}&questionnaire=${questionnaire.id}" /> '>&#128393;</a>
 								<a title="Supprimer"
@@ -102,7 +102,7 @@
 					
 					<input type="submit" value="Valider" form="validQuestionnaire" /> <br />
 					<%-- <a title="Acceuil" href='<c:url value="/createPdf" />'></a> --%>
-			<c:if test="${user.role == 'admin' || user.role == 'superAdmin'}"> <input type="button" class="export" value="exporter" /></c:if>	
+			<c:if test="${user.role == 'Admin'}"> <input type="button" class="export" value="exporter" /></c:if>	
 				</article>
 	
 			

@@ -32,7 +32,7 @@
 
 			<h2 style="background-color:${questionnaire.category.color}">
 				<a title="Acceuil" id="acceuil" href='<c:url value="/home" />'>&#11207;</a>${questionnaire.category.name}</h2>
-			<c:if test="${user.role == 'admin' || user.role == 'superAdmin'}">
+			<c:if test="${user.role == 'Admin'}">
 			<div id="formUser">
 							<form
 								action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}'/>"
@@ -86,7 +86,7 @@
 
 
 
-					<c:if test="${user.role == 'admin' || user.role == 'superAdmin' }">
+					<c:if test="${user.role == 'Admin'}">
 						
 						<%-- <a
 							href='<c:url value="questionnaire?newUser=true&questionnaire=${questionnaire.id}" />'>Retour

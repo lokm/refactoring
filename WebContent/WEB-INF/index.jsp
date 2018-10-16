@@ -37,9 +37,9 @@
 					</c:if>
 
 
-					<c:if test="${user.role == 'admin' || user.role == 'superAdmin' }">
+					<c:if test="${user.role == 'Admin'}">
 
-						<c:if test="${ user.role == 'superAdmin' }">
+						<c:if test="${ user.role == 'Admin' }">
 							<c:import url="/resources/fragments/addCategory.jsp" />
 						</c:if>
 						<c:import url="/resources/fragments/addQuestionnaire.jsp" />
@@ -88,7 +88,7 @@
 						<article style="background-color:${category.color}">
 							<a href='<c:url value="categorie?categorie=${category.id}" />'>${category.name}</a>
 
-							<c:if test="${user.role == 'superAdmin' }">
+							<c:if test="${user.role == 'Admin' }">
 								<a title="Editer"
 									href='<c:url value="editCategory?categorie=${category.id}" /> '>&#128393;</a>
 								<a title="Supprimer"
@@ -119,7 +119,7 @@
 								<h2 style="background-color:${categorie.color}">${categorie.name}
 
 									<c:if
-										test="${user.role == 'admin' || user.role == 'superAdmin'}">
+										test="${user.role == 'Admin' || user.role == 'Admin'}">
 										<a title="Supprimer"
 											href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
 										<a title="Editer"
@@ -182,7 +182,7 @@
 									<h2 style="background-color:${category.color}">${category.name}
 
 										<c:if
-											test="${user.role == 'admin' || user.role == 'superAdmin'}">
+											test="${user.role == 'Admin'}">
 											<a title="Supprimer"
 												href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
 											<a title="Editer"
@@ -233,7 +233,7 @@
 	</c:if>
 
 	<c:if test="${actionName == 'checkProfil' }">
-		<c:if test="${user.role == 'admin' || user.role == 'superAdmin'}">
+		<c:if test="${user.role == 'Admin'}">
 		
 		Questionnaire effectu&eacute; par ${usertocheck.firstname } ${usertocheck.lastname } : 
 			

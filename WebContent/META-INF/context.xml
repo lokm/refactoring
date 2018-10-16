@@ -5,8 +5,8 @@
 <Resource
       	name="jdbc/questionnaire"
         type="javax.sql.DataSource"
-		username="root"
-		password=""
+		username="nouas_BDD"
+		password="fEr7S9nED3X47pC7"
 		driverClassName="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/questionnaire"
 		maxTotal="100"

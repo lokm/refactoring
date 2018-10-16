@@ -1,5 +1,6 @@
 package fr.nouas.main.action;
 
+
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -12,10 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.nouas.beans.User;
 import fr.nouas.pojo.utils.Action;
-import fr.nouas.pojo.utils.Md5;
+//import fr.nouas.pojo.utils.Md5;
 import fr.nouas.utils.JpaUtil;
 import sun.misc.BASE64Encoder;
 
+@SuppressWarnings("restriction")
 public class SignIn extends Action {
 
 
@@ -27,36 +29,46 @@ public class SignIn extends Action {
        // if(request.getMethod().equals("POST")) {
             
        // Recuperation des donnees utilisateur    
-            /*
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String role = request.getParameter("role");
+
+        
+        String lastname = request.getParameter("userLastname");
+        String firstname = request.getParameter("userFirstname");
+        String role = request.getParameter("userType");
         int userId = Integer.parseInt(request.getParameter("userId"));
+
+        String tokenSend = request.getParameter("token");
+ 
+        System.out.println("lastname : " + lastname);
+        System.out.println("firstname : " + firstname);
+        System.out.println("role : " + role);
+        System.out.println("userId : " + userId);
+  
+ 
+  
+        /*
+        String lastname = "Bourai";
+        String firstname = "Ramdane";
+        String role = "Admin";
+        int userId = Integer.parseInt("18");
+
+  
+        String tokenSend = "20311a7d190f316340931a744667260cc240";
         */
 
-       
-            String lastname = "Bourai";
-         	String firstname = "Ramdane";
-            String role = "Admin";
-            int userId = 18;
-            
-
-
-            
-            Md5  test=  new Md5("BouraiAdminBouraiAdmin"); 
-            
-            String tokenSend = "0202BouraiAdminBouraiAdmin" + test.codeGet();
             
             // creation cle decryptage
             
             int tokenKey [] = { 
             		tokenSend.charAt(0) - '0',
             		tokenSend.charAt(1) - '0',
-            		tokenSend.charAt(2)- '0',
-            		tokenSend.charAt(3)- '0',
+            		tokenSend.charAt(2) - '0',
+            		tokenSend.charAt(3) - '0',
             };
-           System.out.println(tokenKey[0] + "le 0 carac");
-           System.out.println(tokenKey[1] + "le 1 carac");
+
+            
+            System.out.println("tokenKey : " + tokenKey[0] + tokenKey[1] + tokenKey[2] + tokenKey[3]);
+            // ouverture porte
+
             String key = "";
             
             for (int i=0; i<4; i++) {
@@ -81,27 +93,37 @@ public class SignIn extends Action {
                 	          
             	}
             };
-            System.out.println(key);
 
-                String hash = null;
-                try {
-                    MessageDigest md = MessageDigest.getInstance("MD5");
-                    md.update(key.getBytes("UTF-8"));
-                    byte[] raw = md.digest();
-                    hash = (new BASE64Encoder()).encode(raw);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-        
-  
-           
-            String tokenFind = tokenSend.substring(0, 4)+hash;
-            System.out.println(tokenFind);
-            System.out.println(tokenSend);
+            System.out.println("key : " + key);
+//            cryptage porte 
             
+            /*
+            Md5  tF =  new Md5(key);
+         
+            String tokenFind = tokenSend.substring(0, 4)+tF.codeGet();
+            */
+            
+            String hash = null;
+            try {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(key.getBytes("UTF-8"));
+                byte[] raw = md.digest();
+                hash = (new BASE64Encoder()).encode(raw);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+    
+
+       
+        String tokenFind = tokenSend.substring(0, 4)+hash;
+            
+            System.out.println("tokenFind : " + tokenFind);
+//			 verification cle et porte
+
             if(tokenSend.equals( tokenFind)){
         
+
             
             boolean redirect = false;
             
@@ -111,8 +133,10 @@ public class SignIn extends Action {
         	// login //
             
             EntityManager em = JpaUtil.getEntityManager();
+
                    
            
+
             
             
             try {
