@@ -1,5 +1,7 @@
 package fr.nouas.main.action;
 
+import java.security.MessageDigest;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -7,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.nouas.beans.User;
 import fr.nouas.pojo.utils.Action;
-import fr.nouas.pojo.utils.Md5;
+//import fr.nouas.pojo.utils.Md5;
 import fr.nouas.utils.JpaUtil;
+import sun.misc.BASE64Encoder;
 
+@SuppressWarnings("restriction")
 public class SignIn extends Action {
 
 
@@ -21,56 +25,97 @@ public class SignIn extends Action {
        // if(request.getMethod().equals("POST")) {
             
        // Recuperation des donnees utilisateur    
-            /*
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String role = request.getParameter("role");
+          
+        
+        String lastname = request.getParameter("userLastname");
+        String firstname = request.getParameter("userFirstname");
+        String role = request.getParameter("userType");
         int userId = Integer.parseInt(request.getParameter("userId"));
+
+        String tokenSend = request.getParameter("token");
+ 
+        System.out.println("lastname : " + lastname);
+        System.out.println("firstname : " + firstname);
+        System.out.println("role : " + role);
+        System.out.println("userId : " + userId);
+  
+ 
+  
+        /*
+        String lastname = "Bourai";
+        String firstname = "Ramdane";
+        String role = "Admin";
+        int userId = Integer.parseInt("18");
+
+  
+        String tokenSend = "20311a7d190f316340931a744667260cc240";
         */
-
-
-        	String firstname = "youcef";
-            String lastname = "Handoura";
-            String role = "superAdmin";
-            int userId = 5;
-            
-            String tokenSend = request.getParameter("token");
+        System.out.println("tokenSend : " + tokenSend);
             
             // creation cle decryptage
             
-            char tokenKey [] = { 
-            		tokenSend.charAt(0),
-            		tokenSend.charAt(1),
-            		tokenSend.charAt(2),
-            		tokenSend.charAt(3)
+            int tokenKey [] = { 
+            		tokenSend.charAt(0) - '0',
+            		tokenSend.charAt(1) - '0',
+            		tokenSend.charAt(2) - '0',
+            		tokenSend.charAt(3) - '0',
             };
-           
+            
+            System.out.println("tokenKey : " + tokenKey[0] + tokenKey[1] + tokenKey[2] + tokenKey[3]);
+            // ouverture porte
+            
             String key = "";
             
-            for (int i=0; i>4; i++) {
+            for (int i=0; i<4; i++) {
+            
             	switch(tokenKey[i]) {
-            	      case 0 :
-            	      key += request.getParameter("nom");
+            	
+            	      case 0 :    	  
+            	      key += lastname;
             	      break;
-            	      
+          	      
             	      case 1 :
-                      key += request.getParameter("prenom");
+                      key += firstname;
                 	  break;
                 	  
             	      case 2 :
-                	  key += request.getParameter("type");
+                	  key += role;
                 	  break;
                 	  
             	      case 3 :
-                	  key += request.getParameter("id");
+                	  key += userId;
                 	  break;
                 	          
             	}
             };
-            Md5  tF =  new Md5(key); 
-            String tokenFind = tokenSend.substring(0, 3)+tF.codeGet();
+        
+            System.out.println("key : " + key);
+//            cryptage porte 
             
-            if(tokenSend == tokenFind) {
+            /*
+            Md5  tF =  new Md5(key);
+         
+            String tokenFind = tokenSend.substring(0, 4)+tF.codeGet();
+            */
+            
+            String hash = null;
+            try {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(key.getBytes("UTF-8"));
+                byte[] raw = md.digest();
+                hash = (new BASE64Encoder()).encode(raw);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+    
+
+       
+        String tokenFind = tokenSend.substring(0, 4)+hash;
+            
+            System.out.println("tokenFind : " + tokenFind);
+//			 verification cle et porte
+            if(tokenSend.equals( tokenFind)){
         
 
             
