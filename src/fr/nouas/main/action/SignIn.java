@@ -1,5 +1,10 @@
 package fr.nouas.main.action;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -9,6 +14,7 @@ import fr.nouas.beans.User;
 import fr.nouas.pojo.utils.Action;
 import fr.nouas.pojo.utils.Md5;
 import fr.nouas.utils.JpaUtil;
+import sun.misc.BASE64Encoder;
 
 public class SignIn extends Action {
 
@@ -21,14 +27,25 @@ public class SignIn extends Action {
        // if(request.getMethod().equals("POST")) {
             
        // Recuperation des donnees utilisateur    
-          
+            /*
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String role = request.getParameter("role");
         int userId = Integer.parseInt(request.getParameter("userId"));
+        */
+
        
-  
-        String tokenSend = request.getParameter("token");
+            String lastname = "Bourai";
+         	String firstname = "Ramdane";
+            String role = "Admin";
+            int userId = 18;
+            
+
+
+            
+            Md5  test=  new Md5("BouraiAdminBouraiAdmin"); 
+            
+            String tokenSend = "0202BouraiAdminBouraiAdmin" + test.codeGet();
             
             // creation cle decryptage
             
@@ -38,21 +55,20 @@ public class SignIn extends Action {
             		tokenSend.charAt(2)- '0',
             		tokenSend.charAt(3)- '0',
             };
-     
-            // ouverture porte
-            
+           System.out.println(tokenKey[0] + "le 0 carac");
+           System.out.println(tokenKey[1] + "le 1 carac");
             String key = "";
             
             for (int i=0; i<4; i++) {
-            
+            	  System.out.println(tokenKey[i]);
             	switch(tokenKey[i]) {
-            	
-            	      case 0 :    	  
+            	      case 0 :
             	      key += lastname;
             	      break;
-          	      
+            	      
             	      case 1 :
-                      key += firstname;
+            	      System.out.println("cas 1");
+            	      key += firstname;                 
                 	  break;
                 	  
             	      case 2 :
@@ -65,12 +81,25 @@ public class SignIn extends Action {
                 	          
             	}
             };
+            System.out.println(key);
+
+                String hash = null;
+                try {
+                    MessageDigest md = MessageDigest.getInstance("MD5");
+                    md.update(key.getBytes("UTF-8"));
+                    byte[] raw = md.digest();
+                    hash = (new BASE64Encoder()).encode(raw);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
         
-//            cryptage porte 
-            Md5  tF =  new Md5(key); 
-            String tokenFind = tokenSend.substring(0, 4)+tF.codeGet();
-         
-//			 verification cle et porte
+  
+           
+            String tokenFind = tokenSend.substring(0, 4)+hash;
+            System.out.println(tokenFind);
+            System.out.println(tokenSend);
+            
             if(tokenSend.equals( tokenFind)){
         
             
