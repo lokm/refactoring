@@ -1,5 +1,7 @@
 package fr.nouas.main.action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,6 +18,12 @@ public class ShowQuestionnaire extends Action {
 
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
+		
+		// mettre leffacement de la session a 0
+		  request.getSession().setMaxInactiveInterval(-1);
+		
+		// effacement de l'erreur de la validation trop tard 
+		request.getSession().setAttribute("validateToLate", null);
 
 		int id = Integer.parseInt(request.getParameter("questionnaire"));
 		Boolean newUser = Boolean.valueOf(request.getParameter("newUser"));
@@ -44,6 +52,19 @@ public class ShowQuestionnaire extends Action {
 		}
 
 		Questionnaire questionnaire = em.find(Questionnaire.class, id);
+
+		
+		
+		// creation temps limite pour faire questionnaire
+		long now = System.currentTimeMillis();
+		long examMustBeDoneBy = now + questionnaire.getTimer() * 60 * 1000;
+		
+	
+		
+		request.getSession().setAttribute("examMustBeDoneBy", examMustBeDoneBy);
+		request.getSession().setAttribute("now", now);
+		
+		
 
 		request.setAttribute("questionnaire", questionnaire);
 

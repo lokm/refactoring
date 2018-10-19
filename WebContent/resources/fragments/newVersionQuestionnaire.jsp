@@ -13,6 +13,11 @@
 </article>
 
 
+	
+				<!-- CHRONO -->
+
+<p>Il vous reste <span id="countdown_min"></span> minutes et <span id="countdown_sec"></span> secondes</p>
+
 
 <article>
 	<input type="hidden" name="nbQuestion" form="validQuestionnaire"

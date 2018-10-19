@@ -12,6 +12,8 @@
 	type="text/javascript"></script>
 <script src='<c:url value="/resources/js/ajax.js" />'
 	type="text/javascript"></script>
+
+
 <link rel="stylesheet"
 	href="http://kendo.cdn.telerik.com/2018.1.117/styles/kendo.common.min.css" />
 <link rel="stylesheet"
@@ -93,7 +95,7 @@
 							au questionnaire</a> --%>
 
 
-
+				
 
 						<c:set var="point" value="0" scope="page" />
 						<c:set var="nbQuestion" value="0" scope="page" />
@@ -233,4 +235,6 @@
 
 	</section>
 </body>
+<script src='<c:url value="/resources/js/timer.js" />'
+	type="text/javascript"></script>
 </html>

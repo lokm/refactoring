@@ -32,9 +32,18 @@
 				<c:otherwise>
 					<c:if test="${!empty user }">
 					Bienvenue ${user.firstname} ${user.lastname}
+				
 					<a href="<c:url value='/logOut'/>"><input type="button"
 							value="Deconnection" /></a>
 					</c:if>
+				
+				
+				
+				<!-- AFFICHAGE SI REFUS D'enregister reponse pour cause de temps depassé -->
+				
+				
+						<c:if test="${!empty validateToLate}"> la !! ${validateToLate }</c:if>	
+
 
 
 					<c:if test="${user.role == 'Admin'}">
@@ -102,6 +111,7 @@
 		</nav>
 
 	</section>
+	
 	<c:if test="${actionName != 'checkProfil'}">
 		<section id="listCategorie">
 			<form method="POST"
