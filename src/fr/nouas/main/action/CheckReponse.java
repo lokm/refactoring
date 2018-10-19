@@ -1,5 +1,6 @@
 package fr.nouas.main.action;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -40,6 +41,7 @@ public class CheckReponse extends Action {
 			q1.setParameter("idquestionnaire", id);
 
 			ReponsesUser = (List<Reponse>) q1.getResultList();
+			Collections.shuffle(ReponsesUser);
 			int SendVersion = 0;
 			for (Reponse reponse : ReponsesUser) {
 				System.out.println("DANS LES VERSIONS  " + reponse.getVersion());
@@ -60,6 +62,7 @@ public class CheckReponse extends Action {
 			q1.setParameter("idquestionnaire", id);
 
 			ReponsesUser = (List<Reponse>) q1.getResultList();
+			Collections.shuffle(ReponsesUser);
 		}
 
 		System.out.println("DANS LE REPONSE USER" + ReponsesUser.get(0).getReponse());

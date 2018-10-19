@@ -1,6 +1,7 @@
 package fr.nouas.main.action;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -116,7 +117,7 @@ public class ShowQuestionnaire extends Action {
 			q.setParameter("idquestionnaire", id);
 
 			List<Reponse> reponses = (List<Reponse>) q.getResultList();
-
+		
 			if (!reponses.isEmpty()) {
 				DoneQuestionnary = true;
 				System.out.println(

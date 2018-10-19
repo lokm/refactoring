@@ -115,8 +115,7 @@
 
 									<h3>${reponse.question.question}</h3>
 									<br />
-									<c:if test="${reponse.reponse == 'Pas Repondu'}"> <h5 style="color: red">${reponse.reponse}</h5></c:if>
-									<c:if test="${reponse.reponse != 'Pas Repondu'}"> <h5>${reponse.reponse}</h5></c:if>
+									<h5>${reponse.reponse}</h5>
 									<br />
 
 

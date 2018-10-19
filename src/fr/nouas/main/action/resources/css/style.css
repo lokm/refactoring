@@ -294,3 +294,7 @@ nav article a:nth-child(3) {
 	border-radius: 1em;
 }
 
+#badAnswer {color: red !important; 
+			}
+#Answer {color: green !important;
+			}			

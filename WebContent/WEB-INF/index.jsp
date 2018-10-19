@@ -147,6 +147,7 @@
 
 										<c:if test="${userquestionnaire.id == user.id}">
 											<h4>Questionnaire Effectué</h4>
+											Il vous reste  ${questionnaire.version} tentatives
 
 										</c:if>
 
@@ -209,6 +210,7 @@
 
 											<c:if test="${userquestionnaire.id == user.id}">
 												<h4>Questionnaire Effectu&eacute;</h4>
+													Il vous reste  ${questionnaire.version} tentatives
 											</c:if>
 
 										</c:forEach>

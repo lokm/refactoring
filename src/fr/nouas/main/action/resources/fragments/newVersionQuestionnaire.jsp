@@ -25,8 +25,9 @@
 
 	
 				<!-- CHRONO -->
-<div class="ringer"><canvas id="canvas"></canvas></div>
-<p>Il vous reste <span id="countdown_min"></span> minutes et <span id="countdown_sec"></span> secondes</p>
+
+	<p>Temps restant :</p>
+		<div id="ringer"></div>
 
 
 
@@ -91,6 +92,6 @@
 	</c:if>
 </article>
 <script type="text/javascript">
-				ringer.init();
+				ringer.init('${examMustBeDoneBy}');
 </script>
 

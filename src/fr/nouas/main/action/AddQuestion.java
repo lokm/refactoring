@@ -102,6 +102,8 @@ public class AddQuestion extends Action {
 				question = new Question(request.getParameter("questionQcm"),
 						TypeQuestion.valueOf(request.getParameter("type")), bonneReponse, reponses, questionnaire);
 				bonneReponse.setQuestion(question);
+				
+				reponses.add(bonneReponse);
 
 				Reponse mauvaiseReponse1 = null;
 				try {
@@ -179,9 +181,11 @@ public class AddQuestion extends Action {
 				tr.begin();
 				question.setImage(nomFichierPart);
 				em.persist(question);
-				em.persist(bonneReponse);
-				em.persist(mauvaiseReponse1);
-				em.persist(mauvaiseReponse2);
+				for (Reponse reponse : reponses) {
+					em.persist(reponse);
+				}
+			
+			
 
 				tr.commit();
 

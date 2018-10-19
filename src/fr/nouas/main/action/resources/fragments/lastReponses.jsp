@@ -20,24 +20,31 @@
 
 		<c:if test="${reponse.question == bonnereponse.question }">
 		
-		<c:if test="${user.role == 'Admin'}">		<p>
+		<c:if test="${user.role == 'Admin'}">	
+		<p>
  				Question :
  				<h3>${reponse.question.question}</h3>
  				
- 						<br />
- 					 reponse  : <h5>   ${reponse.reponse}</h5>
- 				<hr />
+ 			
  					</c:if>
 			
 				<c:if test="${reponse.question.type == 'QCM' }">
-					<c:choose>
-						<c:when test="${reponse.reponse == bonnereponse.reponse}">
+				
+							<br />
+ 					 reponse  :	 <c:if test="${reponse.reponse == 'Pas Repondu' || reponse.reponse != bonnereponse.reponse }"><h5 style="color:red;">${reponse.reponse}</h5></c:if>
+ 							
+ 								  <c:if test="${reponse.reponse == bonnereponse.reponse}"><h5 id="Answer">${reponse.reponse}</h5></c:if>
+ 				<hr />
+				
+						<c:if test="${reponse.reponse == bonnereponse.reponse}">
 							<c:set var="point" value="${point + 1}" scope="page" />
-
 						
-						</c:when>
-
-					</c:choose>
+						
+						</c:if>
+						
+					
+						
+				
 
 				</c:if>
 				<c:if test="${reponse.question.type == 'QUESTION_SIMPLE' }">
@@ -47,8 +54,7 @@
 					<c:set var="Splitreponses"
 						value="${fn:split(bonnereponse.reponse, ' ')}" />
 					 
-					
-			</p>
+		</p>
 
 			<c:forEach items="${Splitreponses}" var="Splitreponse">
 
@@ -59,11 +65,41 @@
 				</c:if>
 			</c:forEach>
 		
-			<c:if test="${ReussitMotCle * 100 / fn:length(Splitreponses) >= reponse.question.pourcentageNeed }">
+		<c:choose>
+		
+		<c:when test="${ReussitMotCle * 100 / fn:length(Splitreponses) >= reponse.question.pourcentageNeed }">
+		
+		
 			<c:set var="point" value="${point + 1}" scope="page" />
-			</c:if>
+		
+		
 			
-
+							<br />
+ 					 reponse  :	<h5 id="Answer">${reponse.reponse}</h5>
+ 					 
+ 				
+ 							
+		
+		</c:when>
+		
+			<c:otherwise>
+			
+				 reponse  : <h5 style="color:red;">${reponse.reponse}</h5>
+				 
+			</c:otherwise>
+			
+			</c:choose>
+		
+		
+			
+ 								 
+			
+			
+		
+			
+		
+			
+</c:if>
 
 
 
@@ -71,11 +107,11 @@
 		</c:if>
 
 
-		</c:if>
+
 				
 				
 				
-			
+	
 				
 					
 					
@@ -83,7 +119,10 @@
 				
 				
 		</c:forEach>
-		<h4>Réussite de la dernière tentative : ${point * 100 / nbQuestion} %</h4> 
+		<c:set var="resultat" value="${point * 100 / nbQuestion}" scope="page" />
+	
+						
+		<h4>Réussite de la dernière tentative : ${fn:substring(resultat, 0, 5)} %</h4> 
 			<c:if test="${user.role == 'Admin'}"> <input type="button" class="export" value="exporter" /> </c:if>
 			<br>
 				<c:if test="${user.role == 'Admin'}"> 	
