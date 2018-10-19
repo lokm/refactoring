@@ -128,6 +128,9 @@ public class AddQuestion extends Action {
 					e.printStackTrace();
 				}
 				reponses.add(mauvaiseReponse2);
+				
+				
+			
 
 				Collections.shuffle(reponses);
 

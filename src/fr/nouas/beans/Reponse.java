@@ -17,7 +17,7 @@ public class Reponse {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
 
-@Column(length=150, nullable=false)
+@Column(length=150, nullable=true)
 private String reponse;
 
 @ManyToOne
@@ -45,6 +45,16 @@ public Reponse(int id, String reponse, User user, Question question, int version
 public Reponse(String reponse, boolean correct, Question question, Questionnaire questionnaire) {
 	super();
 	this.reponse = reponse;
+	this.correct = correct;
+
+	this.question = question;
+	this.questionnaire = questionnaire;
+
+}
+
+public Reponse(boolean correct, Question question, Questionnaire questionnaire) {
+	super();
+
 	this.correct = correct;
 
 	this.question = question;

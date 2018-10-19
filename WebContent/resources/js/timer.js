@@ -1,4 +1,7 @@
-var submitQuestionnaire = document.getElementById("validQuestionnaire");
+
+
+ var submitQuestionnaire = document.getElementById("validQuestionnaire");
+
 
 countdownManager = {
 		
