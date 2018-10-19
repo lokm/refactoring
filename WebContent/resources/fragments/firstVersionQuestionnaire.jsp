@@ -9,13 +9,6 @@
 	});
 	
 </script> 
-
-
-
-	
-	
-	
-	
 	
 	<c:if test="${user.role == 'Admin'}">
 				<select name="type" id="type" form="formQuestion" >
@@ -41,16 +34,14 @@
 						method="POST" id="validQuestionnaire"></form>
 				</article>
 			
-				<p>Il vous reste <span id="countdown_min"></span> minutes et <span id="countdown_sec"></span> secondes</p>
+				
 			
 			
 				<article>
 				
 				<!-- CHRONO -->
-				
-		
-
-	<p>Il vous reste <span id="countdown_min"></span> minutes et <span id="countdown_sec"></span> secondes</p>
+				<p>Temps restant :</p>
+		<div id="ringer"></div>
 			
 					<input type="hidden" name="nbQuestion" form="validQuestionnaire" value="${fn:length(questionnaire.questions)}">
 					<c:forEach items="${questionnaire.questions}" var="question"
@@ -129,5 +120,8 @@
 					<%-- <a title="Acceuil" href='<c:url value="/createPdf" />'></a> --%>
 			<c:if test="${user.role == 'Admin'}"> <input type="button" class="export" value="exporter" /></c:if>	
 				</article>
+<script type="text/javascript">
+				ringer.init('${examMustBeDoneBy}');
+</script>
 	
 			

@@ -12,10 +12,9 @@
 	type="text/javascript"></script>
 <script src='<c:url value="/resources/js/ajax.js" />'
 	type="text/javascript"></script>
-
-	<script src='<c:url value="/resources/js/timer.js" />'
+<script src='<c:url value="/resources/js/ringer.js" />'
 	type="text/javascript"></script>
-
+	
 <link rel="stylesheet"
 	href="http://kendo.cdn.telerik.com/2018.1.117/styles/kendo.common.min.css" />
 <link rel="stylesheet"
@@ -239,4 +238,5 @@
 </body>
 <script src='<c:url value="/resources/js/timer.js" />'
 	type="text/javascript"></script>
+	
 </html>

@@ -1,3 +1,4 @@
+var submitQuestionnaire = document.getElementById("validQuestionnaire");
 
 countdownManager = {
 		
@@ -21,7 +22,8 @@ countdownManager = {
         this.displayElement.min  = jQuery('#countdown_min');
         this.displayElement.sec  = jQuery('#countdown_sec');
          
-
+    
+        
         // Lancement du compte à rebours
         this.tick(); // Premier tick tout de suite
         window.setInterval("countdownManager.tick();", 1000); // Ticks suivant, répété toutes les secondes (1000 ms)
@@ -30,13 +32,11 @@ countdownManager = {
     // Met à jour le compte à rebours (tic d'horloge)
     tick: function() {
         // Instant présent
-
         var str  = new Date();
        var  timeNow = Date.now();
      
  
   
-
          
         // On s'assure que le temps restant ne soit jamais négatif (ce qui est le cas dans le futur de targetTime)
         if( timeNow > this.displayElement.time ){
@@ -50,6 +50,14 @@ countdownManager = {
         this.displayElement.hour.text( diff.hour );
         this.displayElement.min.text(  diff.min  );
         this.displayElement.sec.text(  diff.sec  );
+        
+        
+        if( diff.hour == 0 && diff.min==0 && diff.sec == 0 )
+        	{
+        	submitQuestionnaire.submit();
+        	};
+  
+        
     },
      
     // Calcul la différence entre 2 dates, en jour/heure/minute/seconde
@@ -66,8 +74,10 @@ countdownManager = {
         tmp = Math.floor((tmp-diff.hour)/24);   // Nombre de jours restants
         diff.day = tmp;
  
-
+        
         return diff;
+        
+        
     }
 };
- 
+
