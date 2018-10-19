@@ -1,5 +1,5 @@
 
- 
+ var submitQuestionnaire = document.getElementById("validQuestionnaire");
 
 countdownManager = {
 		
@@ -51,6 +51,14 @@ countdownManager = {
         this.displayElement.hour.text( diff.hour );
         this.displayElement.min.text(  diff.min  );
         this.displayElement.sec.text(  diff.sec  );
+        
+        
+        if( diff.hour == 0 && diff.min==0 && diff.sec == 0 )
+        	{
+        	submitQuestionnaire.submit();
+        	};
+  
+        
     },
      
     // Calcul la différence entre 2 dates, en jour/heure/minute/seconde
@@ -73,3 +81,4 @@ countdownManager = {
         
     }
 };
+

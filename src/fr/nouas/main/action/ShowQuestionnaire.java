@@ -100,17 +100,18 @@ public class ShowQuestionnaire extends Action {
 			// Si l'utilisateur veux une version particuliere
 			if (VersionSession != null) {
 				q = em.createQuery(
-						"SELECT R FROM Reponse R Where user_id=:idUser AND questionnaire_id=:idquestionnaire AND version =:checkVersion");
+						"SELECT R FROM Reponse R Where user_id=:idUser AND  questionnaire_id=:idquestionnaire AND version =:checkVersion");
 				q.setParameter("checkVersion", Integer.parseInt(VersionSession));
 				System.out.println("dans le versionSession pas egale nul" + Integer.parseInt(VersionSession));
 			} // Si derniere version
 			else {
 				q = em.createQuery("SELECT R FROM Reponse R Where user_id=:idUser AND questionnaire_id=:idquestionnaire"
-						+ " AND version = (SELECT MAX(version) FROM Reponse WHERE user_id=:idUser AND questionnaire_id=:idquestionnaire )");
+						+ " AND version = (SELECT MAX(version) FROM Reponse WHERE  user_id=:idUser AND questionnaire_id=:idquestionnaire )");
 				System.out.println("dans le versionSession  egale nul");
 			}
 			System.out.println("idquesitionnaire " + id);
 			System.out.println("iduser " + idUser);
+	
 			q.setParameter("idUser", idUser);
 			q.setParameter("idquestionnaire", id);
 

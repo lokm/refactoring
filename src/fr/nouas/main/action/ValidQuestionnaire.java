@@ -22,12 +22,13 @@ public class ValidQuestionnaire extends Action {
 		// TODO Auto-generated method stub
 		
 		// mettre leffacement de la session a pareil que sur le server.xml
-		  request.getSession().setMaxInactiveInterval(5); 
+		  
 		
 		 // verification si temps ok ?
 		Date currentDate = new Date();
-		
-		Date examLimit = (Date) request.getSession().getAttribute("examMustBeDoneBy");
+
+		long examMustBeDoneBy = (long) request.getSession().getAttribute("examMustBeDoneBy");
+		Date examLimit = new Date (examMustBeDoneBy * 1000);
 		if (currentDate.before(examLimit)){
 		
 			
@@ -49,7 +50,8 @@ public class ValidQuestionnaire extends Action {
 			    		 Query q = em.createQuery("SELECT R FROM Reponse R Where user_id=:idUser AND questionnaire_id=:idquestionnaire" 
 			    		 			      		  +" AND version = (SELECT MAX(version) FROM Reponse WHERE user_id=:idUser AND questionnaire_id=:idquestionnaire )");
 					   q.setParameter("idUser", idUser); 
-			    	   q.setParameter("idquestionnaire", id); 	
+					   q.setParameter("idquestionnaire", id);
+							
 			    	   List <Reponse> VersionReponses = (List <Reponse>) q.getResultList();
 			    	   
 			    	   if(!VersionReponses.isEmpty()) {
@@ -67,7 +69,15 @@ public class ValidQuestionnaire extends Action {
 						String nbQuestion = request.getParameter("nbQuestion");
 						
 						User user = em.find(User.class, idUser);
+						
 					
+						
+												 
+						 
+						 
+						 
+						 
+						 
 						System.out.println(nbQuestion);
 						
 						if (nbQuestion != null) {
@@ -75,10 +85,21 @@ public class ValidQuestionnaire extends Action {
 							Reponse [] reponses = new Reponse [intNbQuestion];
 							System.out.println("question : ");
 							for (int i = 0; i < intNbQuestion; i++ ) {
+								
+								System.out.println("laaaaaaaaaaa : " + request.getParameter("reponseEleve"+(i+1)));
+								//creation des reponses vide
+								
+								if((request.getParameter("reponseEleve"+(i+1))) == null ||  (request.getParameter("reponseEleve"+(i+1))) == "" ) {
+									System.out.println("laaaaaaaaaaa DEDANS: " + request.getParameter("reponseEleve"+(i+1)));
+									 reponses[i] = new Reponse (
+											 "Pas Repondu", 
+											 em.find(Question.class, Integer.parseInt(request.getParameter("question"+(i+1)))));
+									
+								}else {
 								 reponses[i] = new Reponse (
 										 request.getParameter("reponseEleve"+(i+1)), 
 										 em.find(Question.class, Integer.parseInt(request.getParameter("question"+(i+1)))));
-								
+								}
 								reponses[i].setUser(user);
 								reponses[i].setQuestionnaire(questionnaire);
 								
@@ -132,6 +153,8 @@ public class ValidQuestionnaire extends Action {
 		}
 		
 }
+
+
 	
 
 }

@@ -82,7 +82,7 @@
 		
 									<c:forEach items="${question.reponses}" var="reponse">
 								
-										<c:if test="${reponse.user == null }">
+										<c:if test="${reponse.user == null && !empty reponse.reponse }">
 										<label><input type="radio" name="reponseEleve${count.count }" value="${reponse.reponse}" form="validQuestionnaire" >${reponse.reponse}</label>
 										</c:if>	<input type="hidden" name="question${count.count }" form="validQuestionnaire" value="${question.id}">
 										<br>
