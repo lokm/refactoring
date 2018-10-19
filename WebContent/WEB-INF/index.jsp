@@ -11,51 +11,22 @@
 	<section id="home">
 
 		<aside>
-			<!-- RAJOUT DE CATEGORY -->
-			<c:choose>
-
-
-				<c:when test="${empty user}">
-					<%-- <c:import url='<c:url value="/resources/fragments/login.jsp" />' /> --%>
-					<c:if test="${actionName != 'checkProfil'}">
-						<c:import url="/resources/fragments/login.jsp" />
-						<a href="<c:url value='/signIn'/>"> <input type="button"
-							value="Inscription" /></a>
-
-					</c:if>
-					<c:if test="${actionName == 'signIn'}">
-						<c:import url="/resources/fragments/signin.jsp" />
-					</c:if>
-
-
-				</c:when>
-				<c:otherwise>
-					<c:if test="${!empty user }">
-					Bienvenue ${user.firstname} ${user.lastname}
-				
-					<a href="<c:url value='/logOut'/>"><input type="button"
-							value="Deconnection" /></a>
-					</c:if>
-				
-				
-				
-				<!-- AFFICHAGE SI REFUS D'enregister reponse pour cause de temps depassé -->
-				
-				
-						<c:if test="${!empty validateToLate}"> la !! ${validateToLate }</c:if>	
-
-
-
-					<c:if test="${user.role == 'Admin'}">
-
-						<c:if test="${ user.role == 'Admin' }">
-							<c:import url="/resources/fragments/addCategory.jsp" />
-						</c:if>
-						<c:import url="/resources/fragments/addQuestionnaire.jsp" />
-					</c:if>
-				</c:otherwise>
-			</c:choose>
+			<div id="user">
+				<c:if test="${!empty user }">
+					Bienvenue ${user.firstname} ${user.lastname}	
+				</c:if>
+			</div>
+			<hr>
 			<!-- RAJOUT DE QUESTIONNAIRE   -->
+			<c:if test="${ user.role == 'Admin' }">
+				<c:import url="/resources/fragments/addCategory.jsp" />
+				<c:import url="/resources/fragments/addQuestionnaire.jsp" />
+			</c:if>
+			<hr>
+			<!-- AFFICHAGE SI REFUS D'enregister reponse pour cause de temps depassé -->
+			<c:if test="${!empty validateToLate}"> la !! ${validateToLate }</c:if>	
+	
+			
 		</aside>
 		<nav>
 
