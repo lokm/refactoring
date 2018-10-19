@@ -91,6 +91,6 @@
 	</c:if>
 </article>
 <script type="text/javascript">
-				ringer.init();
+				ringer.init('${examMustBeDoneBy}');
 </script>
 

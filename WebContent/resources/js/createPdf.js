@@ -7,7 +7,7 @@ $(document).ready(function() {
 	            // renvoie le résultat en PDF
 	            return kendo.drawing.exportPDF(group, {
 	                paperSize: "auto",
-	                margin: { left: "1cm", top: "1cm", right: "1cm", bottom: "1cm" }
+	                margin: { left: "0cm", top: "0cm", right: "0cm", bottom: "0cm" }
 	            });
 	        })
 	        .done(function(data) {
