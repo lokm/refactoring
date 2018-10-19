@@ -31,29 +31,46 @@ public class SignIn extends Action {
        // Recuperation des donnees utilisateur    
 
         
-        String lastname = request.getParameter("userLastname");
-        String firstname = request.getParameter("userFirstname");
-        String role = request.getParameter("userType");
-        int userId = Integer.parseInt(request.getParameter("userId"));
+//        String lastname = request.getParameter("userLastname");
+//        String firstname = request.getParameter("userFirstname");
+//        String role = request.getParameter("userType");
+//        int userId = Integer.parseInt(request.getParameter("userId"));
 
-        String tokenSend = request.getParameter("token");
+   //     String tokenSend = request.getParameter("token");
  
-        System.out.println("lastname : " + lastname);
-        System.out.println("firstname : " + firstname);
-        System.out.println("role : " + role);
-        System.out.println("userId : " + userId);
+    
   
  
   
-        /*
+        
         String lastname = "Bourai";
         String firstname = "Ramdane";
         String role = "Admin";
         int userId = Integer.parseInt("18");
 
-  
-        String tokenSend = "20311a7d190f316340931a744667260cc240";
-        */
+  // DEBUT TEST POUR YOUCEF
+        String tokenSendTest = "11117F788C2F4EEC42A9AFE6574FCD18F84B";
+        
+        
+        
+        String hashTest = null;
+        String KeyTest = "RamdaneRamdaneRamdaneRamdane";
+   
+        
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(KeyTest.getBytes("UTF-8"));
+            byte[] raw = md.digest();
+            hashTest = (new BASE64Encoder()).encode(raw);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        String tokenSend = tokenSendTest.substring(0, 4)+hashTest;
+        
+        // FIN TEST POUR YOUCEF
+        
 
             
             // creation cle decryptage
@@ -184,4 +201,3 @@ public class SignIn extends Action {
             return true;
 	}
 }
-

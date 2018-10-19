@@ -1,4 +1,12 @@
+	<script type="text/javascript">
+
+	jQuery(function($){
+	    // Lancement du compte à rebours au chargement de la page
 	
+	    countdownManager.init(new Date('2018-10-18 16:00:00'));
+	});
+</script>
+
 	
 	<c:if test="${user.role == 'Admin'}">
 				<select name="type" id="type" form="formQuestion" >
@@ -24,6 +32,7 @@
 						method="POST" id="validQuestionnaire"></form>
 				</article>
 			
+				<p>Il vous reste <span id="countdown_min"></span> minutes et <span id="countdown_sec"></span> secondes</p>
 			
 			
 				<article>
