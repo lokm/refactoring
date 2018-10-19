@@ -3,23 +3,23 @@ var ringer = {
   
   rings: {
     
-    'Heures': {
+    'H': {
       s: 3600000, // mseconds per hour,
       max: 24
     },
-    'Minutes': {
+    'M': {
       s: 60000, // mseconds per minute
       max: 60
     },
-    'Seconds': {
+    'S': {
       s: 1000,
       max: 60
     }
    },
   r_count: 3,
-  r_spacing: 10, // px
-  r_size: 50, // px
-  r_thickness: 2, // px
+  r_spacing: 15, // px
+  r_size: 60, // px
+  r_thickness: 5, // px
   update_interval: 11, // ms
     
     
@@ -98,11 +98,11 @@ var ringer = {
     $r.ctx.fillStyle = "#000000";
    
     $r.ctx.font = '9px Helvetica';
-    $r.ctx.fillText(label, 0, 13);
-    $r.ctx.fillText(label, 0, 13);   
+    $r.ctx.fillText(label, 16, 7);
+    $r.ctx.fillText(label, 16, 7);   
     
     $r.ctx.font = '20px Helvetica';
-    $r.ctx.fillText(Math.floor(value), 0, 4);
+    $r.ctx.fillText(Math.floor(value), 0, 7);
     
     $r.ctx.restore();
   }

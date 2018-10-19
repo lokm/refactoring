@@ -26,7 +26,9 @@
 	
 				<!-- CHRONO -->
 
+
 	<p>Temps restant :</p>
+
 		<div id="ringer"></div>
 
 

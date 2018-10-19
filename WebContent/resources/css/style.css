@@ -51,9 +51,32 @@ section {
 	
 	
 }
+/* HOME */
+#home hr {
+	display: block;
+	height:5px;
+	background:rgb(75, 45, 162);
+	width:75vw;
+	border-radius:10vw;
+}
+
 /*ASIDE*/
+aside {
+	text-align:left;
+}
+aside #user {
+	
+	color:white;
+	background:rgb(75, 45, 162);
+	padding:5px;
+	border-radius:10px;
+	width:auto;
+	display:inline-block;
+	margin-bottom:10px;
+	
+}
 aside form {
-	margin-bottom:1em;
+	margin:1em 5em;
 }	
 aside input, aside option, aside select {
 	font-size:1em;
