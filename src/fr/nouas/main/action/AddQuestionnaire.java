@@ -36,7 +36,8 @@ public class AddQuestionnaire extends Action {
 							request.getParameter("description_questionnaire"),
 							category);
 					
-					questionnaire.setVersion(Integer.parseInt(request.getParameter("remake_questionnaire")));;
+					questionnaire.setVersion(Integer.parseInt(request.getParameter("remake_questionnaire")));
+					questionnaire.setTimer(Integer.parseInt(request.getParameter("timer_questionnaire")));;
 					
 					boolean add = false;
 					

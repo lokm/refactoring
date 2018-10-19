@@ -32,6 +32,9 @@ public class Questionnaire {
 
 	@Column(length = 150, nullable = true)
 	private String description;
+	
+	@Column(length = 150, nullable = true)
+	private int timer;
 
 	@JoinTable(name = "questionnaires_users", 
 			joinColumns = @JoinColumn(name = "questionnaire_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_questionnaire")), 
@@ -137,6 +140,14 @@ public class Questionnaire {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getTimer() {
+		return timer;
+	}
+
+	public void setTimer(int timer) {
+		this.timer = timer;
 	}
 
 }

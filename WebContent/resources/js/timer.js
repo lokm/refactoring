@@ -1,3 +1,4 @@
+
 countdownManager = {
 		
    
@@ -20,6 +21,7 @@ countdownManager = {
         this.displayElement.min  = jQuery('#countdown_min');
         this.displayElement.sec  = jQuery('#countdown_sec');
          
+
         // Lancement du compte à rebours
         this.tick(); // Premier tick tout de suite
         window.setInterval("countdownManager.tick();", 1000); // Ticks suivant, répété toutes les secondes (1000 ms)
@@ -28,8 +30,13 @@ countdownManager = {
     // Met à jour le compte à rebours (tic d'horloge)
     tick: function() {
         // Instant présent
-        var timeNow  = new Date();
-        
+
+        var str  = new Date();
+       var  timeNow = Date.now();
+     
+ 
+  
+
          
         // On s'assure que le temps restant ne soit jamais négatif (ce qui est le cas dans le futur de targetTime)
         if( timeNow > this.displayElement.time ){
@@ -59,6 +66,7 @@ countdownManager = {
         tmp = Math.floor((tmp-diff.hour)/24);   // Nombre de jours restants
         diff.day = tmp;
  
+
         return diff;
     }
 };

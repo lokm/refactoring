@@ -1,12 +1,21 @@
-	<script type="text/javascript">
-
+<script type="text/javascript">
+	
 	jQuery(function($){
 	    // Lancement du compte à rebours au chargement de la page
-	
-	    countdownManager.init(new Date('2018-10-18 16:00:00'));
-	});
-</script>
+		var dateFormatJava = '${examMustBeDoneBy}';	
 
+	    
+	    countdownManager.init(dateFormatJava);
+	});
+	
+</script> 
+
+
+
+	
+	
+	
+	
 	
 	<c:if test="${user.role == 'Admin'}">
 				<select name="type" id="type" form="formQuestion" >
@@ -36,6 +45,13 @@
 			
 			
 				<article>
+				
+				<!-- CHRONO -->
+				
+		
+
+	<p>Il vous reste <span id="countdown_min"></span> minutes et <span id="countdown_sec"></span> secondes</p>
+			
 					<input type="hidden" name="nbQuestion" form="validQuestionnaire" value="${fn:length(questionnaire.questions)}">
 					<c:forEach items="${questionnaire.questions}" var="question"
 						varStatus="count">
