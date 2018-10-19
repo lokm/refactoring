@@ -1,4 +1,14 @@
+<script type="text/javascript">
+	
+	jQuery(function($){
+	    // Lancement du compte à rebours au chargement de la page
+		var dateFormatJava = '${examMustBeDoneBy}';	
 
+	    
+	    countdownManager.init(dateFormatJava);
+	});
+	
+</script> 
 
 
 
@@ -15,8 +25,9 @@
 
 	
 				<!-- CHRONO -->
-
+<div class="ringer"><canvas id="canvas"></canvas></div>
 <p>Il vous reste <span id="countdown_min"></span> minutes et <span id="countdown_sec"></span> secondes</p>
+
 
 
 <article>
@@ -79,4 +90,7 @@
 		<input type="button" class="export" value="exporter" />
 	</c:if>
 </article>
+<script type="text/javascript">
+				ringer.init();
+</script>
 

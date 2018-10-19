@@ -12,8 +12,9 @@
 	type="text/javascript"></script>
 <script src='<c:url value="/resources/js/ajax.js" />'
 	type="text/javascript"></script>
-
-
+<script src='<c:url value="/resources/js/ringer.js" />'
+	type="text/javascript"></script>
+	
 <link rel="stylesheet"
 	href="http://kendo.cdn.telerik.com/2018.1.117/styles/kendo.common.min.css" />
 <link rel="stylesheet"
@@ -31,7 +32,7 @@
 
 		<!-- LA BASE -->
 		<article>
-
+		
 			<h2 style="background-color:${questionnaire.category.color}">
 				<a title="Acceuil" id="acceuil" href='<c:url value="/home" />'>&#11207;</a>${questionnaire.category.name}</h2>
 			<c:if test="${user.role == 'Admin'}">
@@ -78,7 +79,7 @@
 			<h3>${questionnaire.name}</h3>
 			<p>${questionnaire.description}</p>
 
-
+			
 
 
 
@@ -114,7 +115,8 @@
 
 									<h3>${reponse.question.question}</h3>
 									<br />
-									<h5>${reponse.reponse}</h5>
+									<c:if test="${reponse.reponse == 'Pas Repondu'}"> <h5 style="color: red">${reponse.reponse}</h5></c:if>
+									<c:if test="${reponse.reponse != 'Pas Repondu'}"> <h5>${reponse.reponse}</h5></c:if>
 									<br />
 
 
@@ -237,4 +239,5 @@
 </body>
 <script src='<c:url value="/resources/js/timer.js" />'
 	type="text/javascript"></script>
+	
 </html>

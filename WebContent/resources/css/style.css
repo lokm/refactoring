@@ -234,6 +234,24 @@ nav article a:nth-child(3) {
 	width:25vw;
 	margin:0 auto;
 }
+#questionnaire .ringer {
+	width: 900px;
+  	height: 200px;
+	display: block;
+	position: relative;
+	background: transparent;
+	margin: 40px auto;
+	text-align: center;
+}
+#questionnaire .ringer canvas {
+	width: 900px;
+  	height: 200px;
+	display: block;
+	position: relative;
+	background: transparent;
+	margin: 40px auto;
+	text-align: center;
+}
 #questionnaire input {
 	padding:0.2em 0.5em;
 }
